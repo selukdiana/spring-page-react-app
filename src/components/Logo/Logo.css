@@ -1,0 +1,27 @@
+.logo {
+  width: 300px;
+}
+
+.logo .st0 {
+  fill: #6cb52d;
+}
+
+.logo .st1 {
+  fill: #fff;
+}
+
+.logo .st3 {
+  fill: #fff;
+}
+
+@media screen and (max-width: 1440px) {
+  .logo {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    width: 200px;
+  }
+}
