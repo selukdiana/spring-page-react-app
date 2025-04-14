@@ -1,6 +1,12 @@
+import SpringBootSvg from "../assets/spring-boot.svg";
+import SpringFramework from "../assets/spring-framework.svg";
+import SpringData from "../assets/spring-data.svg";
+import SpringCloud from "../assets/spring-cloud.svg";
+import SpringDataFlow from "../assets/spring-data-flow.svg";
+
 export const springComponents = [
   {
-    img: "./imgs/spring-boot.svg",
+    img: SpringBootSvg,
     title: "Spring Boot",
     description:
       "Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.",
@@ -8,7 +14,7 @@ export const springComponents = [
     versionsAddition: "9",
   },
   {
-    img: "./imgs/spring-framework.svg",
+    img: SpringFramework,
     title: "Spring Framework",
     description:
       "Provides core support for dependency injection, transaction management, web apps, data access, messaging, and more.",
@@ -16,7 +22,7 @@ export const springComponents = [
     versionsAddition: "8",
   },
   {
-    img: "./imgs/spring-data.svg",
+    img: SpringData,
     title: "Spring Data",
     description:
       "Provides a consistent approach to data access – relational, non-relational, map-reduce, and beyond.",
@@ -24,7 +30,7 @@ export const springComponents = [
     versionsAddition: "7",
   },
   {
-    img: "./imgs/spring-cloud.svg",
+    img: SpringCloud,
     title: "Spring Cloud",
     description:
       "Provides a set of tools for common patterns in distributed systems. Useful for building and deploying microservices..",
@@ -32,7 +38,7 @@ export const springComponents = [
     versionsAddition: "8",
   },
   {
-    img: "./imgs/spring-data-flow.svg",
+    img: SpringDataFlow,
     title: "Spring Cloud Data Flow",
     description:
       "Provides an orchestration service for composable data microservice applications on modern runtimes.",
