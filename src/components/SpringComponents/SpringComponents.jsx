@@ -1,17 +1,20 @@
 import { springComponents } from "../../store";
 import { SpringCard } from "./SpringCard";
 import { SpringInput } from "./SpringInput/SpringInput";
+import { useState } from "react";
 import "./SpringComponents.css";
 
 export const SpringComponents = () => {
+  const [filteredComponents, setFilteredComponents] =
+    useState(springComponents);
   return (
     <section className="components">
       <div className="container">
-        <SpringInput />
+        <SpringInput setFilteredComponents={setFilteredComponents} />
         <div className="components__content">
-          {!springComponents.length
+          {!filteredComponents.length
             ? "No results"
-            : springComponents.map((elem, index) => (
+            : filteredComponents.map((elem, index) => (
                 <SpringCard elem={elem} key={index} />
               ))}
         </div>
