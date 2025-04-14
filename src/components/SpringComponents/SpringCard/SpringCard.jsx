@@ -2,7 +2,6 @@ import "./SpringCard.css";
 export const SpringCard = ({
   elem: { img, title, description, version, versionsAddition },
 }) => {
-  console.log(img);
   return (
     <a className="components__card" href="#">
       <div className="card__header header-card">
