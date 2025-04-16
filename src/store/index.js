@@ -6,6 +6,7 @@ import SpringDataFlow from "../assets/spring-data-flow.svg";
 
 export const springComponents = [
   {
+    id: 1,
     img: SpringBootSvg,
     title: "Spring Boot",
     description:
@@ -14,6 +15,7 @@ export const springComponents = [
     versionsAddition: "9",
   },
   {
+    id: 2,
     img: SpringFramework,
     title: "Spring Framework",
     description:
@@ -22,6 +24,7 @@ export const springComponents = [
     versionsAddition: "8",
   },
   {
+    id: 3,
     img: SpringData,
     title: "Spring Data",
     description:
@@ -30,6 +33,7 @@ export const springComponents = [
     versionsAddition: "7",
   },
   {
+    id: 4,
     img: SpringCloud,
     title: "Spring Cloud",
     description:
@@ -38,6 +42,7 @@ export const springComponents = [
     versionsAddition: "8",
   },
   {
+    id: 5,
     img: SpringDataFlow,
     title: "Spring Cloud Data Flow",
     description:
@@ -48,6 +53,7 @@ export const springComponents = [
 ];
 export const headerData = [
   {
+    id: 1,
     title: "Why Spring",
     list: [
       "Overview",
@@ -60,22 +66,27 @@ export const headerData = [
     ],
   },
   {
+    id: 2,
     title: "Learn",
     list: ["Overview", "Generative AI", "Microservices", "Web Applications"],
   },
   {
+    id: 3,
     title: "Projects",
     list: ["Overview", "Generative AI", "Microservices"],
   },
   {
+    id: 4,
     title: "Academy",
     list: ["Overview", "Generative AI"],
   },
   {
+    id: 5,
     title: "Solutions",
     list: ["Overview", "Generative AI", "Microservices"],
   },
   {
+    id: 6,
     title: "Community",
     list: ["Overview", "Generative AI", "Microservices"],
   },

@@ -1,9 +1,9 @@
 import { springComponents } from "../../../store";
 import { debounce } from "../../../utils/debounce";
-import "./SpringInput.css";
+import styles from "./SpringInput.module.css";
 
 export const SpringInput = ({ setFilteredComponents }) => {
-  const inputHandler = (e) => {
+  const handleInput = (e) => {
     const value = e.target.value;
     setFilteredComponents(() =>
       springComponents.filter(function (elem) {
@@ -11,12 +11,12 @@ export const SpringInput = ({ setFilteredComponents }) => {
       })
     );
   };
-  const debouncedInputHandler = debounce(inputHandler, 300);
+  const debouncedInputHandler = debounce(handleInput, 300);
   return (
     <div className="components__input">
       <input
         type="text"
-        id="components-search"
+        id={styles.search}
         onInput={debouncedInputHandler}
       />
     </div>

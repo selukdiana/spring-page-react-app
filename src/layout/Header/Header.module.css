@@ -3,7 +3,7 @@
   padding: 5px 0;
 }
 
-.header__content {
+.headerContent {
   display: flex;
   justify-content: space-between;
   align-items: stretch;

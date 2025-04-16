@@ -1,5 +1,5 @@
-import "./Separator.css";
+import styles from "./Separator.module.css";
 
 export const Separator = () => {
-  return <hr className="separator" />;
+  return <hr className={styles.separator} />;
 };

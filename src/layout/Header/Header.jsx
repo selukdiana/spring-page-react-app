@@ -1,11 +1,11 @@
 import { Logo } from "../../components/Logo";
 import { HeaderMenu } from "../../components/HeaderMenu";
-import "./Header.css";
+import style from "./Header.module.css";
 export const Header = () => {
   return (
-    <header className="header">
+    <header className={style.header}>
       <div className="container">
-        <div className="header__content">
+        <div className={style.headerContent}>
           <Logo />
           <HeaderMenu />
         </div>

@@ -3,20 +3,20 @@
   background-color: #1b1f23;
 }
 
-.components__content {
+.content {
   --elements: 3;
   display: flex;
   flex-wrap: wrap;
 }
 
 @media screen and (max-width: 1024px) {
-  .components__content {
+  .content {
     --elements: 2;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .components__content {
+  .content {
     --elements: 1;
   }
 }

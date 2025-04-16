@@ -1,24 +1,21 @@
-import "./SpringCard.css";
+import styles from "./SpringCard.module.css";
 export const SpringCard = ({
   elem: { img, title, description, version, versionsAddition },
 }) => {
   return (
-    <a className="components__card" href="#">
-      <div className="card__header header-card">
-        <div className="header-card__img">
+    <a className={styles.card} href="#">
+      <div className={styles.header}>
+        <div className={styles.img}>
           <img src={img} alt={title} />
         </div>
         <h3>{title}</h3>
       </div>
-      <div className="card__description">
+      <div className={styles.description}>
         <p>{description}</p>
       </div>
-      <div className="card__footer footer-card">
-        <span className="footer-card__version">{version}</span>
-        <span className="footer-card__addition">
-          {" "}
-          {versionsAddition} versions
-        </span>
+      <div>
+        <span className={styles.version}>{version}</span>
+        <span className={styles.addition}> {versionsAddition} versions</span>
       </div>
     </a>
   );

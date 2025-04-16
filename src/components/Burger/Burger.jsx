@@ -1,23 +1,26 @@
-import { useState } from "react";
-import "./Burger.css";
+import { useEffect, useState } from "react";
+import styles from "./Burger.module.css";
 
 export const Burger = ({ navRef }) => {
   const [isSideBarOpened, setIsSideBarOpened] = useState(false);
-  const burgerClickHandler = () => {
+  const handleBurgerClick = () => {
     setIsSideBarOpened((prevVal) => !prevVal);
+  };
+  useEffect(() => {
     if (isSideBarOpened) {
       navRef.current.dataset.isOpened = "true";
     } else {
       delete navRef.current.dataset.isOpened;
     }
-  };
+  }, [isSideBarOpened, navRef]);
+
   return (
     <>
-      <input type="checkbox" id="burger-toggle" />
+      <input type="checkbox" id={styles.burgerToggle} />
       <label
-        htmlFor="burger-toggle"
-        className="menu-header__burger"
-        onClick={burgerClickHandler}
+        htmlFor={styles.burgerToggle}
+        className={styles.burger}
+        onClick={handleBurgerClick}
       >
         <span></span>
       </label>

@@ -1,4 +1,4 @@
-.components__card {
+.card {
   background-color: #2b2f33;
   border: 1px solid #2b2f33;
   border-radius: 5px;
@@ -11,40 +11,40 @@
   cursor: pointer;
 }
 
-.components__card:hover {
+.card:hover {
   transform: translateY(-6px);
 }
 
-.card__header {
+.header {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.header-card__img {
+.img {
   flex: 1 1;
   max-width: 60px;
   text-align: center;
   margin-right: 10px;
 }
 
-.header-card__img img {
+.img img {
   display: block;
   width: 100%;
   max-height: 40px;
   max-width: 60px;
 }
 
-.header-card__title {
+.title {
   flex: 3 1;
 }
 
-.card__description p {
+.description p {
   padding: 0.75rem 0;
   line-height: 1.7rem;
 }
 
-.footer-card__version {
+.version {
   display: inline-block;
   background-color: #80ea6e;
   color: #111;
@@ -55,7 +55,7 @@
   line-height: 1.5rem;
 }
 
-.footer-card__addition {
+.addition {
   color: #61717d;
   font-size: 0.75rem;
   margin-left: 0.5rem;

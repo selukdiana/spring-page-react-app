@@ -1,12 +1,12 @@
-import "./ThemeToggler.css";
+import styles from "./ThemeToggler.module.css";
 import { FaMoon } from "react-icons/fa";
 
 export const ThemeToggler = () => {
   return (
-    <label className="menu-header__theme-toggler">
-      <input className="theme-toggler__input" type="checkbox" />
-      <span className="theme-toggler__slider">
-        <FaMoon className="fa-moon" />
+    <label className={styles.themeToggler}>
+      <input className={styles.input} type="checkbox" />
+      <span className={styles.slider}>
+        <FaMoon className={styles.moon} />
       </span>
     </label>
   );
