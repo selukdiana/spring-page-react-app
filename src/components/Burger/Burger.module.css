@@ -1,4 +1,4 @@
-#burgerToggle {
+.burgerToggle {
   display: none;
 }
 
@@ -39,15 +39,15 @@
     transform: translateY(-50%);
   }
 
-  #burgerToggle:checked ~ .burger::after {
+  .burgerToggle:checked ~ .burger::after {
     transform: rotate(45deg);
     bottom: 6px;
   }
-  #burgerToggle:checked ~ .burger::before {
+  .burgerToggle:checked ~ .burger::before {
     transform: rotate(-45deg);
     top: 8px;
   }
-  #burgerToggle:checked ~ .burger span {
+  .burgerToggle:checked ~ .burger span {
     transform: rotate(45deg);
     top: 8px;
   }

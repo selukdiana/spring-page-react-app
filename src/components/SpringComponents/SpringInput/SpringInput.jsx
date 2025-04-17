@@ -14,11 +14,7 @@ export const SpringInput = ({ setFilteredComponents }) => {
   const debouncedInputHandler = debounce(handleInput, 300);
   return (
     <div className="components__input">
-      <input
-        type="text"
-        id={styles.search}
-        onInput={debouncedInputHandler}
-      />
+      <input type="text" class={styles.search} onInput={debouncedInputHandler} />
     </div>
   );
 };
