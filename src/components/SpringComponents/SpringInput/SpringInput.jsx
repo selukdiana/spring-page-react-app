@@ -1,20 +1,22 @@
-import { springComponents } from "../../../store";
+import { useDispatch } from "react-redux";
 import { debounce } from "../../../utils/debounce";
+import { findSpringComponents } from "../../../store/springComponentsSlice";
 import styles from "./SpringInput.module.css";
 
-export const SpringInput = ({ setFilteredComponents }) => {
+export const SpringInput = () => {
+  const dispatch = useDispatch();
   const handleInput = (e) => {
     const value = e.target.value;
-    setFilteredComponents(() =>
-      springComponents.filter(function (elem) {
-        return elem.title.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-      })
-    );
+    dispatch(findSpringComponents(value));
   };
   const debouncedInputHandler = debounce(handleInput, 300);
   return (
     <div className="components__input">
-      <input type="text" class={styles.search} onInput={debouncedInputHandler} />
+      <input
+        type="text"
+        className={styles.search}
+        onInput={debouncedInputHandler}
+      />
     </div>
   );
 };

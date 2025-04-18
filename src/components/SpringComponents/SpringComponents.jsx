@@ -1,20 +1,18 @@
-import { springComponents } from "../../store";
 import { SpringCard } from "./SpringCard";
 import { SpringInput } from "./SpringInput/SpringInput";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./SpringComponents.module.css";
 
 export const SpringComponents = () => {
-  const [filteredComponents, setFilteredComponents] =
-    useState(springComponents);
+  const components = useSelector((state) => state.springComponents.components);
   return (
     <section className={styles.components}>
       <div className="container">
-        <SpringInput setFilteredComponents={setFilteredComponents} />
+        <SpringInput />
         <div className={styles.content}>
-          {!filteredComponents.length
+          {!components.length
             ? "No results"
-            : filteredComponents.map((elem) => (
+            : components.map((elem) => (
                 <SpringCard elem={elem} key={elem.id} />
               ))}
         </div>

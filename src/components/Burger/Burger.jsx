@@ -4,10 +4,9 @@ export const Burger = ({ setIsSideBarOpened }) => {
   const handleBurgerClick = () => {
     setIsSideBarOpened((prevVal) => !prevVal);
   };
-
   return (
     <>
-      <input type="checkbox" class={styles.burgerToggle} id="burger" />
+      <input type="checkbox" className={styles.burgerToggle} id="burger" />
       <label
         htmlFor="burger"
         className={styles.burger}
