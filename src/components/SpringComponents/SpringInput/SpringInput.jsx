@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { debounce } from "../../../utils/debounce";
-import { findSpringComponents } from "../../../store/springComponentsSlice";
+import { findSpringComponents } from "../../../store/slices/springComponentsSlice";
 import styles from "./SpringInput.module.css";
 
 export const SpringInput = () => {

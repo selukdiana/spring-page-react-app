@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import SpringBootSvg from "../assets/spring-boot.svg";
-import SpringFramework from "../assets/spring-framework.svg";
-import SpringData from "../assets/spring-data.svg";
-import SpringCloud from "../assets/spring-cloud.svg";
-import SpringDataFlow from "../assets/spring-data-flow.svg";
+import SpringBootSvg from "../../assets/spring-boot.svg";
+import SpringFramework from "../../assets/spring-framework.svg";
+import SpringData from "../../assets/spring-data.svg";
+import SpringCloud from "../../assets/spring-cloud.svg";
+import SpringDataFlow from "../../assets/spring-data-flow.svg";
 
 const initialStateSpringComponents = {
   components: [

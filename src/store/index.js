@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import springComponentsReducer from "./springComponentsSlice";
-import headerReducer from "./headerSlice";
+import springComponentsReducer from "./slices/springComponentsSlice";
+import headerReducer from "./slices/headerSlice";
 
 export default configureStore({
   reducer: {
