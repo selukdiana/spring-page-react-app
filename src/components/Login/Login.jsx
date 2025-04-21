@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { updataAuthData } from "../../store/slices/authSlice";
 import { useNavigate } from "react-router";
+import { loginThunk } from "../../store/thunks/loginThunk";
 import styles from "./Login.module.css";
 
 export const Login = () => {
@@ -15,10 +15,11 @@ export const Login = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleLogIn = () => {
-    dispatch(updataAuthData(formData));
-    navigate("/");
+    dispatch(loginThunk(formData)).then(navigate("/"), () => {
+      alert("Invalid input!");
+    });
   };
-  
+
   return (
     <section className="login">
       <div className={styles.content}>

@@ -9,9 +9,7 @@ const authSlice = createSlice({
   initialState: initialStateAuth,
   reducers: {
     updataAuthData(state, action) {
-      state.isAuth =
-        action.payload.username === "admin" &&
-        action.payload.password === "1234";
+      state.isAuth = action.payload.isAuth;
     },
   },
 });
