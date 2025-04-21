@@ -1,34 +1,32 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, redirect, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { Layout } from "./pages/Layout";
-import { redirectToHomePage } from "./components/Login";
+import { PrivateRoutes } from "./utils/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: <PrivateRoutes />,
     children: [
       {
-        path: ":isAuth?",
-        element: <HomePage />,
-        loader: ({ request }) => {
-          const isAuth = new URL(request.url).searchParams.get("isAuth");
-          if (isAuth !== "true") {
-            return redirect("/login");
-          }
-        },
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            element: <HomePage />,
+          },
+        ],
       },
     ],
   },
   {
-    path: "login",
+    path: "/login",
     element: <LoginPage />,
-    action: redirectToHomePage,
   },
 ]);
 

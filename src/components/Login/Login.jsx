@@ -1,23 +1,28 @@
-import { Form, redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { updataAuthData } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router";
 import styles from "./Login.module.css";
 
-export const redirectToHomePage = async ({ request }) => {
-  const formData = await request.formData();
-  if (
-    formData.get("username") === "admin" &&
-    formData.get("password") === "1234"
-  ) {
-    return redirect("/?isAuth=true");
-  } else {
-    return redirect("/?isAuth=false");
-  }
-};
-
 export const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const handleFormChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleLogIn = () => {
+    dispatch(updataAuthData(formData));
+    navigate("/");
+  };
+  
   return (
     <section className="login">
       <div className={styles.content}>
-        <Form className={styles.form} method="post">
+        <form className={styles.form} action={handleLogIn}>
           <div className={styles.inputItem}>
             <label htmlFor="username" className={styles.label}>
               username
@@ -27,8 +32,8 @@ export const Login = () => {
               id="username"
               name="username"
               className={styles.input}
-              // onChange={handleUsernameChange}
-              // value={userData.username}
+              value={formData.username}
+              onChange={handleFormChange}
             />
           </div>
           <div className={styles.inputItem}>
@@ -40,14 +45,14 @@ export const Login = () => {
               id="password"
               name="password"
               className={styles.input}
-              // onChange={handlePasswordChange}
-              // value={userData.password}
+              value={formData.password}
+              onChange={handleFormChange}
             />
           </div>
           <button type="submit" className={styles.button}>
             Log in
           </button>
-        </Form>
+        </form>
       </div>
     </section>
   );
