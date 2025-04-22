@@ -1,0 +1,22 @@
+.components {
+  padding: 3rem 0;
+  background-color: #1b1f23;
+}
+
+.content {
+  --elements: 3;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    --elements: 2;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    --elements: 1;
+  }
+}
