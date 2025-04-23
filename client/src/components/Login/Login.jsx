@@ -1,12 +1,12 @@
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { loginThunk } from "../../store/thunks/loginThunk";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router";
+import { loginUser } from "../../store/slices/authSlice";
 import styles from "./Login.module.css";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const status = useSelector((state) => state.auth.status);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -15,12 +15,16 @@ export const Login = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleLogIn = () => {
-    dispatch(loginThunk(formData)).then(navigate("/"), () => {
-      alert("Invalid input!");
-    });
+    dispatch(loginUser(formData));
   };
 
-  return (
+  useEffect(() => {
+    if (status === "unauthorized") alert("Invalid input!");
+  }, [status]);
+
+  return status === "authorized" ? (
+    <Navigate to="/" />
+  ) : (
     <section className="login">
       <div className={styles.content}>
         <form className={styles.form} action={handleLogIn}>

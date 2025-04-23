@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const springComponents = require("./data");
 const app = express();
 const corsOptions = {
@@ -16,6 +17,13 @@ app.get("/api/projects", (req, res) => {
       )
     : springComponents;
   res.json(filteredData);
+});
+
+app.post("/api/auth", bodyParser.json(), (req, res) => {
+  const { username, password } = req.body;
+  const isAuth = username === "admin" && password === "1234" ? true : false;
+  if (!isAuth) throw new Error("Incorrect username or password!");
+  res.json(isAuth);
 });
 
 app.listen(8080, () => {
