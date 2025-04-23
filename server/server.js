@@ -9,7 +9,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.get("/api/projects", (req, res) => {
-  const filter = req.query.filter || "";
+  const filter = req.query.filter;
   const filteredData = filter
     ? springComponents.filter((elem) =>
         elem.title.toLowerCase().includes(filter.toLowerCase())

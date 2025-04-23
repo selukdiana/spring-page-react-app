@@ -18,10 +18,7 @@ const initialStateSpringComponents = {
 export const fetchSpringComponents = createAsyncThunk(
   "springComponents/fetchSpringComponents",
   async () => {
-    debugger;
-    const response = await fetch("http://localhost:8080/api/projects", {
-      method: "GET",
-    });
+    const response = await fetch("http://localhost:8080/api/projects");
     const data = await response.json();
     return data;
   }
@@ -29,8 +26,9 @@ export const fetchSpringComponents = createAsyncThunk(
 export const fetchSpringComponentsFilter = createAsyncThunk(
   "springComponents/fetchSpringComponentsFilter",
   async (value) => {
-    debugger;
-    const response = await fetch(`/projects?filter=${value}`);
+    const response = await fetch(
+      `http://localhost:8080/api/projects?filter=${value}`
+    );
     const data = await response.json();
     return data;
   }
