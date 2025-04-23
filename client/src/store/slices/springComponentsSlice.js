@@ -1,72 +1,52 @@
-import { createSlice } from "@reduxjs/toolkit";
-import SpringBootSvg from "../../assets/spring-boot.svg";
-import SpringFramework from "../../assets/spring-framework.svg";
-import SpringData from "../../assets/spring-data.svg";
-import SpringCloud from "../../assets/spring-cloud.svg";
-import SpringDataFlow from "../../assets/spring-data-flow.svg";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import springBootSvg from "../../assets/spring-boot.svg";
+import springFramework from "../../assets/spring-framework.svg";
+import springData from "../../assets/spring-data.svg";
+import springCloud from "../../assets/spring-cloud.svg";
+import springDataFlow from "../../assets/spring-data-flow.svg";
 
-const initialStateSpringComponents = {
-  components: [
-    {
-      id: 1,
-      img: SpringBootSvg,
-      title: "Spring Boot",
-      description:
-        "Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.",
-      version: "3.4.4",
-      versionsAddition: "9",
-    },
-    {
-      id: 2,
-      img: SpringFramework,
-      title: "Spring Framework",
-      description:
-        "Provides core support for dependency injection, transaction management, web apps, data access, messaging, and more.",
-      version: "6.2.5",
-      versionsAddition: "8",
-    },
-    {
-      id: 3,
-      img: SpringData,
-      title: "Spring Data",
-      description:
-        "Provides a consistent approach to data access – relational, non-relational, map-reduce, and beyond.",
-      version: "2014.1.4",
-      versionsAddition: "7",
-    },
-    {
-      id: 4,
-      img: SpringCloud,
-      title: "Spring Cloud",
-      description:
-        "Provides a set of tools for common patterns in distributed systems. Useful for building and deploying microservices..",
-      version: "2024.0.1",
-      versionsAddition: "8",
-    },
-    {
-      id: 5,
-      img: SpringDataFlow,
-      title: "Spring Cloud Data Flow",
-      description:
-        "Provides an orchestration service for composable data microservice applications on modern runtimes.",
-      version: "2.11.5",
-      versionsAddition: "7",
-    },
-  ],
+export const imgs = {
+  springBootSvg,
+  springFramework,
+  springData,
+  springCloud,
+  springDataFlow,
 };
+const initialStateSpringComponents = {
+  components: [],
+};
+export const fetchSpringComponents = createAsyncThunk(
+  "springComponents/fetchSpringComponents",
+  async () => {
+    debugger;
+    const response = await fetch("http://localhost:8080/api/projects", {
+      method: "GET",
+    });
+    const data = await response.json();
+    return data;
+  }
+);
+export const fetchSpringComponentsFilter = createAsyncThunk(
+  "springComponents/fetchSpringComponentsFilter",
+  async (value) => {
+    debugger;
+    const response = await fetch(`/projects?filter=${value}`);
+    const data = await response.json();
+    return data;
+  }
+);
 
 const springComponentsSlice = createSlice({
   name: "springComponents",
   initialState: initialStateSpringComponents,
-  reducers: {
-    findSpringComponents(state, action) {
-      state.components = initialStateSpringComponents.components.filter(
-        (elem) =>
-          elem.title.toLowerCase().includes(action.payload.toLowerCase())
-      );
-    },
+  extraReducers: (builder) => {
+    builder.addCase(fetchSpringComponents.fulfilled, (state, action) => {
+      state.components = action.payload;
+    });
+    builder.addCase(fetchSpringComponentsFilter.fulfilled, (state, action) => {
+      state.components = action.payload;
+    });
   },
 });
 
-export const { findSpringComponents } = springComponentsSlice.actions;
 export default springComponentsSlice.reducer;
