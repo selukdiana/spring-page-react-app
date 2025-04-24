@@ -1,13 +1,13 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router";
-import { Provider } from "react-redux";
-import store from "./store";
-import "./index.css";
-import { HomePage } from "./pages/HomePage";
-import { LoginPage } from "./pages/LoginPage";
-import { Layout } from "./pages/Layout";
-import { PrivateRoutes } from "./utils/PrivateRoutes";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router'
+import { Provider } from 'react-redux'
+import store from './store'
+import './index.css'
+import { HomePage } from './pages/HomePage'
+import { LoginPage } from './pages/LoginPage'
+import { Layout } from './pages/Layout'
+import { PrivateRoutes } from './utils/PrivateRoutes'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
           {
-            path: "/",
+            path: '/',
             element: <HomePage />,
           },
         ],
@@ -25,15 +25,15 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
-]);
+])
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}></RouterProvider>
     </Provider>
   </StrictMode>
-);
+)

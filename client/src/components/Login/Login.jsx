@@ -1,28 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Navigate } from "react-router";
-import { loginUser } from "../../store/slices/authSlice";
-import styles from "./Login.module.css";
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router'
+import { loginUser } from '../../store/slices/authSlice'
+import styles from './Login.module.css'
 
 export const Login = () => {
-  const dispatch = useDispatch();
-  const status = useSelector((state) => state.auth.status);
+  const dispatch = useDispatch()
+  const status = useSelector((state) => state.auth.status)
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
+    username: '',
+    password: '',
+  })
   const handleFormChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
   const handleLogIn = () => {
-    dispatch(loginUser(formData));
-  };
+    dispatch(loginUser(formData))
+  }
 
   useEffect(() => {
-    if (status === "unauthorized") alert("Invalid input!");
-  }, [status]);
+    if (status === 'unauthorized') alert('Invalid input!')
+  }, [status])
 
-  return status === "authorized" ? (
+  return status === 'authorized' ? (
     <Navigate to="/" />
   ) : (
     <section className="login">
@@ -60,5 +60,5 @@ export const Login = () => {
         </form>
       </div>
     </section>
-  );
-};
+  )
+}

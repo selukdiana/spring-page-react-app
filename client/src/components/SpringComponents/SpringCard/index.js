@@ -1,1 +1,1 @@
-export * from "./SpringCard";
+export * from './SpringCard'

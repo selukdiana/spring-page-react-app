@@ -1,7 +1,7 @@
-import { configureStore } from "@reduxjs/toolkit";
-import springComponentsReducer from "./slices/springComponentsSlice";
-import headerReducer from "./slices/headerSlice";
-import authReducer from "./slices/authSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import springComponentsReducer from './slices/springComponentsSlice'
+import headerReducer from './slices/headerSlice'
+import authReducer from './slices/authSlice'
 
 export default configureStore({
   reducer: {
@@ -9,4 +9,4 @@ export default configureStore({
     header: headerReducer,
     auth: authReducer,
   },
-});
+})

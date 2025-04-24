@@ -1,4 +1,4 @@
-import styles from "./NavigationItem.module.css";
+import styles from './NavigationItem.module.css'
 
 export const NavigationItem = ({ elem: { title, list } }) => {
   return (
@@ -14,5 +14,5 @@ export const NavigationItem = ({ elem: { title, list } }) => {
         ))}
       </ul>
     </li>
-  );
-};
+  )
+}

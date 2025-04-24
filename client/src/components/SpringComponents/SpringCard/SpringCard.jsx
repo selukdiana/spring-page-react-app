@@ -1,5 +1,5 @@
-import { imgs } from "../../../store/slices/springComponentsSlice";
-import styles from "./SpringCard.module.css";
+import { imgs } from '../../../store/slices/springComponentsSlice'
+import styles from './SpringCard.module.css'
 export const SpringCard = ({
   elem: { img, title, description, version, versionsAddition },
 }) => {
@@ -19,5 +19,5 @@ export const SpringCard = ({
         <span className={styles.addition}> {versionsAddition} versions</span>
       </div>
     </a>
-  );
-};
+  )
+}

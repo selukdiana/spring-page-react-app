@@ -1,5 +1,5 @@
-import styles from "./ThemeToggler.module.css";
-import { FaMoon } from "react-icons/fa";
+import styles from './ThemeToggler.module.css'
+import { FaMoon } from 'react-icons/fa'
 
 export const ThemeToggler = () => {
   return (
@@ -9,5 +9,5 @@ export const ThemeToggler = () => {
         <FaMoon className={styles.moon} />
       </span>
     </label>
-  );
-};
+  )
+}

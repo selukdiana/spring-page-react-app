@@ -1,4 +1,4 @@
-import styles from "./Logo.module.css";
+import styles from './Logo.module.css'
 export const Logo = () => {
   return (
     <div>
@@ -118,5 +118,5 @@ export const Logo = () => {
         </svg>
       </a>
     </div>
-  );
-};
+  )
+}

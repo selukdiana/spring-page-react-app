@@ -11,7 +11,7 @@
 }
 
 .listItem::after {
-  content: "";
+  content: '';
   border: solid #fff;
   border-width: 0 2px 2px 0;
   height: 0.5rem;
@@ -64,7 +64,7 @@
   .listItem::after {
     right: 5px;
     top: 20px;
-    content: "";
+    content: '';
     border: solid #98afae;
     border-width: 0 2px 2px 0;
     height: 15px;

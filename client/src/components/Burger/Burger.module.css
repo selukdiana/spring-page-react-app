@@ -25,12 +25,12 @@
   }
 
   .burger::before {
-    content: "";
+    content: '';
     top: 0;
   }
 
   .burger::after {
-    content: "";
+    content: '';
     bottom: 0;
   }
 

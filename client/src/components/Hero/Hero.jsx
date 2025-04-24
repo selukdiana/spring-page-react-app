@@ -1,4 +1,4 @@
-import styles from "./Hero.module.css";
+import styles from './Hero.module.css'
 
 export const Hero = () => {
   return (
@@ -18,5 +18,5 @@ export const Hero = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

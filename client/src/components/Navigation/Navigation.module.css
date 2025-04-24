@@ -27,7 +27,7 @@
     align-items: stretch;
   }
 
-  .nav[data-is-opened="true"] {
+  .nav[data-is-opened='true'] {
     top: 0;
     bottom: 0;
   }

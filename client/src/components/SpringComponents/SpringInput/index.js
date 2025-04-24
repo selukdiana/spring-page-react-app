@@ -1,1 +1,1 @@
-export * from "./SpringInput";
+export * from './SpringInput'
