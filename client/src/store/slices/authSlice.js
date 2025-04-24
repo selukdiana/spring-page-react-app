@@ -6,14 +6,24 @@ const initialStateAuth = {
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (userData) => {
-    const response = await fetch('http://localhost:8080/api/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData),
-    })
-    const data = await response.json()
-    return data
+  async (userData, { rejectWithValue }) => {
+    debugger;
+    try {
+      const response = await fetch('http://localhost:8080/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+      })
+      if (!response.ok) {
+        throw new Error("Can't fetch")
+      }
+      const data = await response.json()
+      return data
+    } catch (e) {
+      rejectWithValue(e.message)
+    }
+
+
   }
 )
 

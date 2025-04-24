@@ -13,8 +13,8 @@ app.get('/api/projects', (req, res) => {
   const filter = req.query.filter
   const filteredData = filter
     ? springComponents.filter((elem) =>
-        elem.title.toLowerCase().includes(filter.toLowerCase())
-      )
+      elem.title.toLowerCase().includes(filter.toLowerCase())
+    )
     : springComponents
   res.json(filteredData)
 })
@@ -22,7 +22,9 @@ app.get('/api/projects', (req, res) => {
 app.post('/api/auth', bodyParser.json(), (req, res) => {
   const { username, password } = req.body
   const isAuth = username === 'admin' && password === '1234' ? true : false
-  if (!isAuth) throw new Error('Incorrect username or password!')
+  if (!isAuth) {
+    res.status(500).send("Incorrect value!");
+  }
   res.json(isAuth)
 })
 
