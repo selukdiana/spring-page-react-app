@@ -1,5 +1,3 @@
-const pool = require('../config/db')
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../models/userModel')
 const tokenController = require('../controllers/tokenController')
@@ -8,19 +6,18 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body
     const user = await User.findOne({ where: { username } })
-    if (!user) throw new Error('Wrong username!')
+    if (!user) throw new Error()
     const isPasswordCorrect = bcrypt.compareSync(password, user.password)
-    if (!isPasswordCorrect) throw new Error('Wrong password!')
+    if (!isPasswordCorrect) throw new Error()
     const tokens = tokenController.generateJwt({
       id: user.id,
       username: user.username,
     })
-    tokenController.saveToken(tokens.accessToken)
     res.cookie('refreshToken', tokens.refreshToken, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+      maxAge: 10 * 60 * 1000,
       httpOnly: true,
     })
-    return res.status(201).json({ accessToken, username })
+    return res.status(201).json({ accessToken: tokens.accessToken, username })
   } catch (err) {
     return res.status(400).send(err)
   }
@@ -44,14 +41,32 @@ exports.signup = async (req, res) => {
 exports.refresh = (req, res) => {
   try {
     const { refreshToken } = req.cookies
-    if (!refreshToken); //err
+    if (!refreshToken) throw new Error()
     const userData = tokenController.validateRefreshToken(refreshToken)
-    const tokens = tokenController.generateJwt(userData)
-    tokenController.saveToken(tokens.accessToken)
+    if (!userData) throw new Error()
+    const tokens = tokenController.generateJwt({
+      id: userData.id,
+      username: userData.username,
+    })
     res.cookie('refreshToken', tokens.refreshToken, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+      maxAge: 10 * 60 * 1000,
       httpOnly: true,
     })
-    return res.status(201).json({ accessToken, username: userData.username })
-  } catch (err) {}
+    res
+      .status(201)
+      .json({ accessToken: tokens.accessToken, username: userData.username })
+  } catch (err) {
+    res.status(401).send('Unauthorized')
+  }
 }
+
+// exports.logout = (req, res, next) => {
+//   try {
+//     const { refreshToken } = req.cookies
+//     tokenController.refreshToken = null
+//     res.clearCookie('refreshToken')
+//     return res.json(tokenController.refreshToken)
+//   } catch (e) {
+//     next(e)
+//   }
+// }

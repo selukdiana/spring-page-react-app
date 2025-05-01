@@ -6,7 +6,7 @@ const springComponents = [
     description:
       'Takes an opinionated view of building Spring applications and gets you up and running as quickly as possible.',
     version: '3.4.4',
-    versionsAddition: '9',
+    versionsAddition: 9,
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const springComponents = [
     description:
       'Provides core support for dependency injection, transaction management, web apps, data access, messaging, and more.',
     version: '6.2.5',
-    versionsAddition: '8',
+    versionsAddition: 8,
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const springComponents = [
     description:
       'Provides a consistent approach to data access – relational, non-relational, map-reduce, and beyond.',
     version: '2014.1.4',
-    versionsAddition: '7',
+    versionsAddition: 7,
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const springComponents = [
     description:
       'Provides a set of tools for common patterns in distributed systems. Useful for building and deploying microservices..',
     version: '2024.0.1',
-    versionsAddition: '8',
+    versionsAddition: 8,
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const springComponents = [
     description:
       'Provides an orchestration service for composable data microservice applications on modern runtimes.',
     version: '2.11.5',
-    versionsAddition: '7',
+    versionsAddition: 7,
   },
 ]
 

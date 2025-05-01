@@ -9,3 +9,5 @@ const SpringComponent = sequelize.define('springComponent', {
   version: { type: DataTypes.STRING },
   versionsAddition: { type: DataTypes.INTEGER },
 })
+
+module.exports = SpringComponent

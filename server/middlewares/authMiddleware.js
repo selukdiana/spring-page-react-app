@@ -2,11 +2,13 @@ const tokenController = require('../controllers/tokenController')
 module.exports = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization
-    if (!authHeader); //unauthorized err
+    if (!authHeader) throw new Error()
     const accessToken = authHeader.split(' ')[1]
     const userData = tokenController.validateAccessToken(accessToken)
-    if (!userData); //unauth err
+    if (!userData) throw new Error()
     req.user = userData
     next()
-  } catch (err) {}
+  } catch (err) {
+    res.status(401).send('Unauthorized')
+  }
 }
