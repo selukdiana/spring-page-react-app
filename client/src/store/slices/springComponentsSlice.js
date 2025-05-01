@@ -4,6 +4,8 @@ import springFramework from '../../assets/spring-framework.svg'
 import springData from '../../assets/spring-data.svg'
 import springCloud from '../../assets/spring-cloud.svg'
 import springDataFlow from '../../assets/spring-data-flow.svg'
+import $api from '../../http'
+import { logout } from './authSlice'
 
 export const imgs = {
   springBootSvg,
@@ -17,20 +19,17 @@ const initialStateSpringComponents = {
 }
 export const fetchSpringComponents = createAsyncThunk(
   'springComponents/fetchSpringComponents',
-  async () => {
-    const response = await fetch('http://localhost:8080/api/projects')
-    const data = await response.json()
-    return data
-  }
-)
-export const fetchSpringComponentsFilter = createAsyncThunk(
-  'springComponents/fetchSpringComponentsFilter',
-  async (value) => {
-    const response = await fetch(
-      `http://localhost:8080/api/projects?filter=${value}`
-    )
-    const data = await response.json()
-    return data
+  async (value, { dispatch, rejectWithValue }) => {
+    try {
+      let response = await $api.get(
+        `/projects${value ? '?filter=' + value : ''}`
+      )
+      const data = await response.data
+      return data
+    } catch (e) {
+      dispatch(logout())
+      return rejectWithValue(e)
+    }
   }
 )
 
@@ -39,9 +38,6 @@ const springComponentsSlice = createSlice({
   initialState: initialStateSpringComponents,
   extraReducers: (builder) => {
     builder.addCase(fetchSpringComponents.fulfilled, (state, action) => {
-      state.components = action.payload
-    })
-    builder.addCase(fetchSpringComponentsFilter.fulfilled, (state, action) => {
       state.components = action.payload
     })
   },

@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux'
 import { debounce } from '../../../utils/debounce'
-import { fetchSpringComponentsFilter } from '../../../store/slices/springComponentsSlice'
+import { fetchSpringComponents } from '../../../store/slices/springComponentsSlice'
 import styles from './SpringInput.module.css'
 
 export const SpringInput = () => {
   const dispatch = useDispatch()
   const handleInput = (e) => {
     const value = e.target.value
-    dispatch(fetchSpringComponentsFilter(value))
+    dispatch(fetchSpringComponents(value))
   }
   const debouncedInputHandler = debounce(handleInput, 300)
   return (
