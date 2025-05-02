@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router'
+import { Navigate, Link } from 'react-router'
 import { loginUser } from '../../store/slices/authSlice'
 import styles from './Login.module.css'
 
@@ -54,9 +54,14 @@ export const Login = () => {
               onChange={handleFormChange}
             />
           </div>
-          <button type="submit" className={styles.button}>
-            Log in
-          </button>
+          <div className={styles.formFooter}>
+            <Link to="/signup" className={styles.link}>
+              Sign up
+            </Link>
+            <button type="submit" className={styles.button}>
+              Log in
+            </button>
+          </div>
         </form>
       </div>
     </section>

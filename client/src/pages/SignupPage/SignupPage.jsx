@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
-import { Navigate } from 'react-router'
+import { Link, Navigate } from 'react-router'
 import { signUpUser } from '../../store/slices/authSlice'
 import styles from './SignupPage.module.css'
 import { Input } from '../../components/Input'
@@ -55,9 +55,14 @@ export const SignupPage = () => {
       <div className={styles.content}>
         <form className={styles.form} action={handleSignUp}>
           {inputArray.map((input) => input)}
-          <button type="submit" className={styles.button}>
-            Sign up
-          </button>
+          <div className={styles.formFooter}>
+            <Link to="/login" className={styles.link}>
+              Log in
+            </Link>
+            <button type="submit" className={styles.button}>
+              Sign up
+            </button>
+          </div>
         </form>
       </div>
     </section>
