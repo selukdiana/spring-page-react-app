@@ -10,6 +10,7 @@ export const SignupPage = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     age: undefined,
     firstName: '',
     lastName: '',
@@ -62,7 +63,7 @@ export const SignupPage = () => {
               age
             </label>
             <input
-              type="text"
+              type="number"
               id="age"
               name="age"
               className={styles.input}
@@ -91,6 +92,19 @@ export const SignupPage = () => {
               type="password"
               id="password"
               name="password"
+              className={styles.input}
+              value={formData.password}
+              onChange={handleFormChange}
+            />
+          </div>
+          <div className={styles.inputItem}>
+            <label htmlFor="confirmPassword" className={styles.label}>
+              confirm password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
               className={styles.input}
               value={formData.password}
               onChange={handleFormChange}

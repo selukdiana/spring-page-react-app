@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/userModel')
 const tokenController = require('../controllers/tokenController')
+const { validationResult } = require('express-validator')
 
 exports.login = async (req, res) => {
   try {
@@ -24,6 +25,10 @@ exports.login = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() })
+  }
   const { firstName, lastName, age, username, password } = req.body
   const isUserExist = await User.findOne({ where: { username } })
   if (isUserExist) res.status(404).send('is Exist')
