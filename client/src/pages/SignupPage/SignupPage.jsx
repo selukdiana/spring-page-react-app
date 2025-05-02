@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Navigate } from 'react-router'
 import { signUpUser } from '../../store/slices/authSlice'
 import styles from './SignupPage.module.css'
+import { Input } from '../../components/Input'
+import { ErrorMessage } from '../../components/ErrorMessage'
 
 export const SignupPage = () => {
   const dispatch = useDispatch()
@@ -15,6 +17,9 @@ export const SignupPage = () => {
     firstName: '',
     lastName: '',
   })
+
+  const errorData = useSelector((state) => state.auth.errors)
+
   const handleFormChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
@@ -22,9 +27,26 @@ export const SignupPage = () => {
     dispatch(signUpUser(formData))
   }
 
-  useEffect(() => {
-    // if (status === 'unauthorized') alert('Invalid input!')
-  }, [status])
+  const inputArray = []
+  for (const fieldName in formData) {
+    inputArray.push(
+      <Input
+        key={fieldName}
+        name={fieldName}
+        formData={formData}
+        handler={handleFormChange}
+        type={
+          fieldName === 'password' || fieldName === 'confirmPassword'
+            ? 'pasword'
+            : fieldName === 'age'
+              ? 'number'
+              : 'text'
+        }
+      >
+        <ErrorMessage msg={errorData[fieldName] ? errorData[fieldName] : ''} />
+      </Input>
+    )
+  }
 
   return status === 'signedUp' ? (
     <Navigate to="/login" />
@@ -32,84 +54,7 @@ export const SignupPage = () => {
     <section className="signup">
       <div className={styles.content}>
         <form className={styles.form} action={handleSignUp}>
-          <div className={styles.inputItem}>
-            <label htmlFor="firstName" className={styles.label}>
-              firstName
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              className={styles.input}
-              value={formData.firstName}
-              onChange={handleFormChange}
-            />
-          </div>
-          <div className={styles.inputItem}>
-            <label htmlFor="lastName" className={styles.label}>
-              lastName
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              className={styles.input}
-              value={formData.lastName}
-              onChange={handleFormChange}
-            />
-          </div>
-          <div className={styles.inputItem}>
-            <label htmlFor="age" className={styles.label}>
-              age
-            </label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              className={styles.input}
-              value={formData.age}
-              onChange={handleFormChange}
-            />
-          </div>
-          <div className={styles.inputItem}>
-            <label htmlFor="username" className={styles.label}>
-              username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className={styles.input}
-              value={formData.username}
-              onChange={handleFormChange}
-            />
-          </div>
-          <div className={styles.inputItem}>
-            <label htmlFor="password" className={styles.label}>
-              password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className={styles.input}
-              value={formData.password}
-              onChange={handleFormChange}
-            />
-          </div>
-          <div className={styles.inputItem}>
-            <label htmlFor="confirmPassword" className={styles.label}>
-              confirm password
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              className={styles.input}
-              value={formData.password}
-              onChange={handleFormChange}
-            />
-          </div>
+          {inputArray.map((input) => input)}
           <button type="submit" className={styles.button}>
             Sign up
           </button>
