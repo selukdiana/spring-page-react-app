@@ -9,6 +9,6 @@ module.exports = (req, res, next) => {
     req.user = userData
     next()
   } catch (err) {
-    res.status(401).send('Unauthorized')
+    res.status(401).send(err)
   }
 }

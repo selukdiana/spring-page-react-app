@@ -18,29 +18,34 @@ exports.login = async (req, res) => {
       maxAge: 10 * 60 * 1000,
       httpOnly: true,
     })
-    return res.status(201).json({ accessToken: tokens.accessToken, username })
+    return res.status(200).json({ accessToken: tokens.accessToken, username })
   } catch (err) {
     return res.status(400).send(err)
   }
 }
 
 exports.signup = async (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
+  try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+    const { firstName, lastName, age, username, password } = req.body
+    const isUserExist = await User.findOne({ where: { username } })
+    if (isUserExist) throw new Error()
+    const hashPassword = await bcrypt.hash(password, 5)
+    await User.create({
+      firstName,
+      lastName,
+      username,
+      age,
+      password: hashPassword,
+    })
+    return res.status(201).json({ username })
+  } catch (err) {
+    return res.status(400).send(err)
   }
-  const { firstName, lastName, age, username, password } = req.body
-  const isUserExist = await User.findOne({ where: { username } })
-  if (isUserExist) res.status(404).send('is Exist')
-  const hashPassword = await bcrypt.hash(password, 5)
-  await User.create({
-    firstName,
-    lastName,
-    username,
-    age,
-    password: hashPassword,
-  })
-  return res.status(201).json({ username })
+
 }
 
 exports.refresh = (req, res) => {
@@ -58,10 +63,10 @@ exports.refresh = (req, res) => {
       httpOnly: true,
     })
     res
-      .status(201)
+      .status(200)
       .json({ accessToken: tokens.accessToken, username: userData.username })
   } catch (err) {
-    res.status(401).send('Unauthorized')
+    res.status(401).send(err)
   }
 }
 
